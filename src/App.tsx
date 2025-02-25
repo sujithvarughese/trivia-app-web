@@ -1,4 +1,4 @@
-
+import Settings from "./components/Settings.tsx";
 
 
 const App = () => {
@@ -6,7 +6,7 @@ const App = () => {
 
   return (
     <>
-
+      <Settings />
     </>
   )
 }

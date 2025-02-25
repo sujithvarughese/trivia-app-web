@@ -4,11 +4,15 @@ import './index.css'
 import App from './App.tsx'
 import '@mantine/core/styles.css';
 import {MantineProvider} from "@mantine/core";
+import {Provider} from "react-redux";
+import {store} from "./store.ts";
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <MantineProvider>
-      <App />
-    </MantineProvider>
+    <Provider store={store}>
+      <MantineProvider>
+        <App />
+      </MantineProvider>
+    </Provider>
   </StrictMode>,
 )

@@ -1,19 +1,8 @@
-import {Box, Modal, NativeSelect} from "@mantine/core";
+import {Box, Button, Modal, NativeSelect} from "@mantine/core";
 import {useAppDispatch, useAppSelector} from "../hooks.ts";
 import {fetchQuestions, setCategory, setNewGame, setShowSettings} from "../features/gameSlice";
-import {useDisclosure} from "@mantine/hooks";
-import {useState} from "react";
 import {categories} from "../utilities/categories.ts";
 
-type ComboboxDataItem = {
-  value: string;
-  label: string;
-};
-
-const formattedCategories: ComboboxDataItem[] = categories.map((item) => ({
-  value: item.value.toString(),
-  label: item.label,
-}));
 
 const Settings = () => {
 
@@ -26,19 +15,16 @@ const Settings = () => {
     dispatch(setNewGame())
   }
 
-  const [opened, { open, close }] = useDisclosure(false);
-  const [value, setValue] = useState("");
-
   return (
-    <Modal opened={opened} onClose={close} title="Settings">
+    <Modal opened={showSettings} onClose={() => setShowSettings(false)} title="Settings">
 
       <NativeSelect
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        data={formattedCategories}
+        onChange={(e) => dispatch(setCategory(Number(e.target.value)))}
+        data={categories}
       />
       <Box>
-
+        <Button onClick={saveSettings}>Save</Button>
+        <Button onClick={() => dispatch(setShowSettings(false))}>Cancel</Button>
       </Box>
     </Modal>
   );
