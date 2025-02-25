@@ -1,4 +1,4 @@
-import {Box, Text} from "@mantine/core";
+import {Flex, Text} from "@mantine/core";
 import {useAppSelector} from "../hooks.ts";
 
 
@@ -8,10 +8,10 @@ const Score = () => {
   const highScore = useAppSelector(state => state.game.highScore)
 
   return (
-    <Box>
-      <Text style={{ color: "#fff" }}>Score: {score}</Text>
+    <Flex style={{ flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+      <Text style={{ color: "#fff", fontWeight: 700 }}>Score: {score}</Text>
       <Text style={{ color: "#fff" }}>High Score: {highScore}</Text>
-    </Box>
+    </Flex>
   );
 };
 

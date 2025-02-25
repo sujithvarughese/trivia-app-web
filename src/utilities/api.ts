@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = import.meta.env.EXPO_PUBLIC_OPEN_AI_KEY;
+const API_KEY = import.meta.env.VITE_OPEN_AI_KEY;
 
 export const openai = axios.create({
   baseURL: 'https://api.openai.com/v1',

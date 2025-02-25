@@ -18,9 +18,10 @@ const ResponseButton = ({ label, difficulty, correct }: Props) => {
     <Button
       onClick={() => dispatch(setScore({ difficulty, correct }))}
       disabled={completed}
+      w={{ base: "100%", md: "80%"}}
+      m={{ base: 12, md: 24 }}
       style={{
-        backgroundColor: completed && correct && "green",
-        width: 320,
+        backgroundColor: completed && correct ? "green" : undefined,
         height: 84,
         alignItems: 'center',
         justifyContent: 'center',
@@ -28,7 +29,7 @@ const ResponseButton = ({ label, difficulty, correct }: Props) => {
         borderColor: '#fff',
         borderWidth: 2,
         borderRadius: 18,
-        flexDirection: 'row',
+        fontSize: 20,
       }}
     >
       {label}

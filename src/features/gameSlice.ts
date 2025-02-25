@@ -150,7 +150,7 @@ export const fetchQuestions = createAsyncThunk("game/fetchQuestions", async (cat
 
 export const fetchAiResponse = createAsyncThunk("game/fetchAiResponse", async (question: string) => {
   let run = await openai.post("/threads/runs", {
-    assistant_id: import.meta.env.EXPO_PUBLIC_ASSISTANT_ID,
+    assistant_id: import.meta.env.VITE_ASSISTANT_ID,
     thread: {
       messages: [{role: "user", content: question }]
     }

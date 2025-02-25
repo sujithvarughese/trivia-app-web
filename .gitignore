@@ -2,6 +2,9 @@
 
 # dependencies
 node_modules/
+dist
+dist-ssr
+*.local
 
 # debug
 npm-debug.*
@@ -11,6 +14,12 @@ yarn-error.*
 # macOS
 .DS_Store
 *.pem
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
 # local env files
 .env*.local

@@ -1,6 +1,6 @@
 import {useAppDispatch, useAppSelector} from "../hooks.ts";
 import {fetchAiResponse, fetchQuestions, setNextQuestion} from "../features/gameSlice";
-import {ActionIcon, Box, Loader, Text} from "@mantine/core";
+import {ActionIcon, ButtonGroup, Flex, Grid, Loader, Text} from "@mantine/core";
 import ResponseButton from "./ResponseButton.tsx";
 import { GiBrain } from "react-icons/gi";
 import { FaChevronRight } from "react-icons/fa";
@@ -29,38 +29,43 @@ const Question = () => {
   }
 
   return (
-    <Box>
+    <Flex style={{ flexDirection: "column", alignItems: "center", justifyContent: "center", margin: 48  }}>
 
       {!!questions.length &&
-      <Box>
+      <Flex style={{ flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16 }}>
         <Text style={{ color: "#fff" }}>{questions[questionIndex]?.category} - {questions[questionIndex]?.difficulty}</Text>
-        <Text style={{ color: "#fff" }}>{questions[questionIndex]?.question}</Text>
-      </Box>
+        <Text style={{ color: "#fff", fontWeight: 600 }}>{questions[questionIndex]?.question}</Text>
+      </Flex>
       }
 
-      <Box>
+      <Grid style={{  width: "100%" }}>
         {questions[questionIndex]?.choices.map((choice: any, index: number) =>
-          <ResponseButton
-            key={index}
-            label={choice.response}
-            difficulty={questions[questionIndex]?.difficulty}
-            correct={choice.correct}
-          />
+          <Grid.Col span={{ base: 12, md: 6 }} key={index}>
+            <ResponseButton
+              key={index}
+              label={choice.response}
+              difficulty={questions[questionIndex]?.difficulty}
+              correct={choice.correct}
+            />
+          </Grid.Col>
+
         )}
-      </Box>
+      </Grid>
 
       {completed &&
-      <Box>
-        <ActionIcon onClick={handleAiResponse}>
-          {loading ? <Loader /> : <GiBrain size={42} color="#fff" />}
+      <ButtonGroup style={{ gap: 24 }}>
+        <ActionIcon onClick={handleAiResponse} variant="filled" size={64}>
+          {loading ? <Loader size={42}/> : <GiBrain  size={42}/>}
         </ActionIcon>
-        <ActionIcon onClick={handleNextQuestion}>
-          <FaChevronRight size={42} color="#fff" />
+        {!gameOver &&
+        <ActionIcon onClick={handleNextQuestion} variant="filled" size={64} p={16}>
+          <FaChevronRight size={42}/>
         </ActionIcon>
-      </Box>
+        }
+      </ButtonGroup>
       }
 
-    </Box>
+    </Flex>
   );
 };
 
