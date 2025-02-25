@@ -17,11 +17,17 @@ const App = () => {
   return (
     <Box style={{ maxWidth: "1920px", margin: "0 auto" }}>
       <BackgroundImage src={bg} style={{ height: "100vh" }}>
-        <Flex style={{ width: "100%", justifyContent: "space-between", padding: "10px" }}>
+
+        <Flex style={{ width: "100%", justifyContent: "space-between", padding: "10px", alignItems: "center" }}>
           <Strikes />
           <Score />
-          <ActionIcon variant="default" aria-label="Settings" onClick={() => dispatch(setShowSettings(true))}>
-            <IoSettingsSharp />
+          <ActionIcon
+            variant="default"
+            aria-label="Settings"
+            onClick={() => dispatch(setShowSettings(true))}
+            size={36}
+          >
+            <IoSettingsSharp size={24}/>
           </ActionIcon>
         </Flex>
 

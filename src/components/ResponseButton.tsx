@@ -18,6 +18,7 @@ const ResponseButton = ({ label, difficulty, correct }: Props) => {
     <Button
       onClick={() => dispatch(setScore({ difficulty, correct }))}
       disabled={completed}
+      color="indigo"
       w={{ base: "100%", md: "80%"}}
       m={{ base: 12, md: 24 }}
       style={{
