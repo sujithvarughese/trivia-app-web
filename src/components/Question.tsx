@@ -55,9 +55,9 @@ const Question = () => {
       {completed &&
       <ButtonGroup style={{ gap: 24 }}>
         <ActionIcon onClick={handleAiResponse} variant="filled" size={64}>
-          {loading ? <Loader size={42}/> : <GiBrain  size={42}/>}
+          {loading ? <Loader size={42} color="lime" /> : <GiBrain  size={42}/>}
         </ActionIcon>
-        {!gameOver &&
+        {!gameOver && !loading &&
         <ActionIcon onClick={handleNextQuestion} variant="filled" size={64} p={16}>
           <FaChevronRight size={42}/>
         </ActionIcon>

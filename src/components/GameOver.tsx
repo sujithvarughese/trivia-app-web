@@ -1,6 +1,6 @@
 import {useAppDispatch, useAppSelector} from "../hooks.ts";
 import {setNewGame, fetchQuestions, setShowGameOver} from "../features/gameSlice";
-import {Button, ButtonGroup, Modal, Text} from "@mantine/core";
+import {Button, ButtonGroup, Flex, Modal, Text, Title} from "@mantine/core";
 
 const GameOver = () => {
 
@@ -17,14 +17,17 @@ const GameOver = () => {
 
 
   return (
-    <Modal opened={showGameOver} onClose={() => dispatch(setShowGameOver(false))} title="Game Over">
-      <Text>Game Over</Text>
-      {score === highScore && <Text>NEW HIGH SCORE</Text>}
-      <Text>Your Score: {score}</Text>
-      <ButtonGroup>
-        <Button onClick={handleClickNewGame}>Play Again</Button>
-        <Button onClick={() => dispatch(setShowGameOver(false))}>Close</Button>
-      </ButtonGroup>
+    <Modal opened={showGameOver} onClose={() => dispatch(setShowGameOver(false))} withCloseButton={false}>
+      <Flex style={{ flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 16, padding: 16 }}>
+        <Title>Game Over</Title>
+        {score === highScore && <Text>NEW HIGH SCORE</Text>}
+        <Text>Your Score: {score}</Text>
+        <ButtonGroup style={{ gap: 16 }}>
+          <Button onClick={handleClickNewGame}>Play Again</Button>
+          <Button onClick={() => dispatch(setShowGameOver(false))}>Close</Button>
+        </ButtonGroup>
+      </Flex>
+
     </Modal>
   );
 };
