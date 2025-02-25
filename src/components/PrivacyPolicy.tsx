@@ -1,4 +1,4 @@
-import {Box, Container, Flex, Text} from "@mantine/core";
+import {Box, Container, Text} from "@mantine/core";
 
 const PrivacyPolicy = () => {
   return (

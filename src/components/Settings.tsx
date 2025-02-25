@@ -1,4 +1,4 @@
-import {Box, Button, ButtonGroup, Flex, Modal, NativeSelect} from "@mantine/core";
+import {Button, ButtonGroup, Flex, Modal, NativeSelect} from "@mantine/core";
 import {useAppDispatch, useAppSelector} from "../hooks.ts";
 import {fetchQuestions, setCategory, setNewGame, setShowSettings} from "../features/gameSlice";
 import {categories} from "../utilities/categories.ts";
