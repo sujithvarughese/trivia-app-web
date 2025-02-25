@@ -2,6 +2,7 @@ import {Box, Button, Modal, NativeSelect} from "@mantine/core";
 import {useAppDispatch, useAppSelector} from "../hooks.ts";
 import {fetchQuestions, setCategory, setNewGame, setShowSettings} from "../features/gameSlice";
 import {categories} from "../utilities/categories.ts";
+import {Link} from "react-router";
 
 
 const Settings = () => {
@@ -25,6 +26,7 @@ const Settings = () => {
       <Box>
         <Button onClick={saveSettings}>Save</Button>
         <Button onClick={() => dispatch(setShowSettings(false))}>Cancel</Button>
+        <Link to="/support">Support</Link>
       </Box>
     </Modal>
   );
