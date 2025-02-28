@@ -149,7 +149,7 @@ export const fetchQuestions = createAsyncThunk("game/fetchQuestions", async (cat
 })
 
 // assistants api
-export const _fetchAiResponse = createAsyncThunk("game/fetchAiResponse", async (question: string) => {
+export const _fetchAiResponse = createAsyncThunk("game/_fetchAiResponse", async (question: string) => {
   let run = await _openai.post("/threads/runs", {
     assistant_id: import.meta.env.VITE_ASSISTANT_ID,
     thread: {
@@ -169,7 +169,7 @@ export const _fetchAiResponse = createAsyncThunk("game/fetchAiResponse", async (
 })
 
 // chat completions api
-export const fetchAiResponse = createAsyncThunk("game/_fetchAiResponse", async (question: string) => {
+export const fetchAiResponse = createAsyncThunk("game/fetchAiResponse", async (question: string) => {
   const response = await openai.post("", {
     model: "gpt-3.5-turbo-0125",
     max_tokens: 400,
