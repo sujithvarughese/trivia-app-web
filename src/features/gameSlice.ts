@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { openai } from "../utilities/api"
+import { _openai, openai } from "../utilities/api"
 
 export type stateProps = {
   score: number,
@@ -148,8 +148,9 @@ export const fetchQuestions = createAsyncThunk("game/fetchQuestions", async (cat
   })
 })
 
-export const fetchAiResponse = createAsyncThunk("game/fetchAiResponse", async (question: string) => {
-  let run = await openai.post("/threads/runs", {
+// assistants api
+export const _fetchAiResponse = createAsyncThunk("game/fetchAiResponse", async (question: string) => {
+  let run = await _openai.post("/threads/runs", {
     assistant_id: import.meta.env.VITE_ASSISTANT_ID,
     thread: {
       messages: [{role: "user", content: question }]
@@ -165,6 +166,21 @@ export const fetchAiResponse = createAsyncThunk("game/fetchAiResponse", async (q
     openai.delete(`https://api.openai.com/v1/threads/${threadId}`)
     return messages.data.data[0].content[0].text.value.replace(/\【.*?】/g, '')
   }
+})
+
+// chat completions api
+export const fetchAiResponse = createAsyncThunk("game/_fetchAiResponse", async (question: string) => {
+  const response = await openai.post("", {
+    model: "gpt-3.5-turbo-0125",
+    max_tokens: 400,
+    messages: [
+      {
+        role: "system",
+        content: `You are a helpful assistant for a trivia application to help users get quick facts about trivia questions. You will be given a question and an answer, and should give a brief explanation about the subject. Use light humor when needed: ${question}`
+      },
+    ]
+  })
+  return response.data.choices[0].message.content
 })
 
 export default gameSlice.reducer;
